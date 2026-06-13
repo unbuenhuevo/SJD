@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un Buen Huevo — Huevos frescos de San José del Cabo</title>
+<meta name="description" content="Suscríbete a huevos frescos de San José del Cabo. Entrega semanal o quincenal en el centro, Palmilla, o a domicilio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blood: #C0392B;
+    --blood2: #9B2335;
+    --g2: #3B6D11;
+    --g1: #27500A;
+    --gl: #EAF3DE;
+    --gm: #C0DD97;
+    --al: #FAEEDA;
+    --ad: #633806;
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --border: rgba(0,0,0,0.1);
+    --border-hover: rgba(0,0,0,0.2);
+    --text-primary: #1a1a1a;
+    --text-secondary: #666;
+    --text-tertiary: #999;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141414;
+      --surface: #1e1e1e;
+      --border: rgba(255,255,255,0.1);
+      --border-hover: rgba(255,255,255,0.2);
+      --text-primary: #f0f0f0;
+      --text-secondary: #aaa;
+      --text-tertiary: #666;
+      --gl: #1a2e0e;
+      --gm: #2d5010;
+      --al: #2e2010;
+    }
+  }
+
+  html { background: var(--bg); }
+
+  body {
+    font-family: 'Lato', -apple-system, sans-serif;
+    color: var(--text-primary);
+    background: var(--bg);
+    min-height: 100vh;
+  }
+
+  .page-wrap {
+    max-width: 520px;
+    margin: 0 auto;
+    background: var(--surface);
+    min-height: 100vh;
+    border-left: 0.5px solid var(--border);
+    border-right: 0.5px solid var(--border);
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 3.5rem 2rem 2.5rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .egg-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 1.5rem;
+  }
+  .egg-line { flex: 1; max-width: 60px; height: 0.5px; background: var(--border); }
+  .egg-icons { font-size: 20px; letter-spacing: 8px; opacity: .65; }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(40px, 10vw, 54px);
+    font-weight: 400;
+    color: var(--blood);
+    letter-spacing: -1px;
+    line-height: 1;
+    font-style: italic;
+  }
+  .hero h1 span { font-style: normal; font-weight: 500; }
+  .tagline {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-top: 14px;
+    font-weight: 300;
+  }
+  .domain { font-size: 11px; color: var(--text-tertiary); margin-top: 6px; letter-spacing: .5px; font-weight: 300; }
+
+  /* SECTIONS */
+  .section { padding: 2rem 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .section:last-of-type { border-bottom: none; }
+  .sec-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  /* PLAN CARDS */
+  .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sc {
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.2rem;
+    cursor: pointer;
+    background: var(--surface);
+    transition: border-color .12s;
+    user-select: none;
+  }
+  .sc:hover { border-color: var(--border-hover); }
+  .sc.on { border: 2px solid var(--blood); background: #FDF5F4; }
+  @media (prefers-color-scheme: dark) { .sc.on { background: #2a1210; } }
+  .sc h3 { font-size: 14px; font-weight: 400; color: var(--text-primary); }
+  .sc .price { font-size: 22px; font-weight: 300; margin-top: 6px; font-family: 'Playfair Display', serif; color: var(--text-primary); }
+  .sc .price small { font-size: 11px; font-weight: 400; color: var(--text-secondary); font-family: 'Lato', sans-serif; }
+  .sc p { font-size: 11px; color: var(--text-secondary); margin-top: 4px; font-weight: 300; line-height: 1.5; }
+
+  /* DELIVERY CARDS */
+  .del-grid { display: grid; gap: 9px; }
+  .dc {
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: .95rem 1.15rem;
+    cursor: pointer;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color .12s;
+    user-select: none;
+  }
+  .dc:hover { border-color: var(--border-hover); }
+  .dc.on { border: 2px solid var(--blood); background: #FDF5F4; }
+  @media (prefers-color-scheme: dark) { .dc.on { background: #2a1210; } }
+  .diw {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    background: rgba(0,0,0,0.05);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 17px;
+    color: var(--text-secondary);
+  }
+  @media (prefers-color-scheme: dark) { .diw { background: rgba(255,255,255,0.07); } }
+  .dc.on .diw { background: #F5C6C2; color: var(--blood2); }
+  .dc h3 { font-size: 13px; font-weight: 400; color: var(--text-primary); }
+  .dc p { font-size: 11px; color: var(--text-secondary); margin-top: 2px; font-weight: 300; }
+  .dtag { display: inline-block; font-size: 10px; margin-top: 5px; padding: 2px 8px; border-radius: 10px; }
+  .tfree { background: var(--gl); color: var(--g1); }
+  .tfee { background: var(--al); color: var(--ad); }
+
+  /* ADDRESS BOX */
+  .abox {
+    background: rgba(0,0,0,0.03);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem;
+    margin-top: 10px;
+    border: 0.5px solid var(--border);
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) { .abox { background: rgba(255,255,255,0.04); } }
+  .abox.on { display: block; }
+
+  /* FORM FIELDS */
+  .fg { margin-bottom: .875rem; }
+  .fg:last-child { margin-bottom: 0; }
+  .fg label { display: block; font-size: 11px; color: var(--text-secondary); margin-bottom: 5px; font-weight: 300; letter-spacing: .3px; }
+  .fg input, .fg textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-primary);
+    background: var(--surface);
+    outline: none;
+    transition: border-color .12s;
+    -webkit-appearance: none;
+  }
+  .fg input:focus, .fg textarea:focus { border-color: var(--blood); box-shadow: 0 0 0 2px rgba(192,57,43,0.1); }
+  .fg textarea { height: 72px; resize: vertical; }
+  .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 400px) { .fg-row { grid-template-columns: 1fr; } }
+
+  /* SUMMARY */
+  .sumcard {
+    background: rgba(0,0,0,0.03);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.2rem;
+    margin-bottom: 1.25rem;
+    border: 0.5px solid var(--border);
+  }
+  @media (prefers-color-scheme: dark) { .sumcard { background: rgba(255,255,255,0.04); } }
+  .sr { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); padding: 4px 0; font-weight: 300; }
+  .sr.tot {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-primary);
+    border-top: 0.5px solid var(--border);
+    margin-top: 6px;
+    padding-top: 10px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* PAYMENT */
+  .pay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.1rem; }
+  .pc {
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1rem .75rem;
+    cursor: pointer;
+    background: var(--surface);
+    text-align: center;
+    transition: border-color .12s;
+    user-select: none;
+  }
+  .pc:hover { border-color: var(--border-hover); }
+  .pc.on { border: 2px solid var(--blood); background: #FDF5F4; }
+  @media (prefers-color-scheme: dark) { .pc.on { background: #2a1210; } }
+  .pc i { font-size: 20px; color: var(--text-secondary); display: block; margin-bottom: 5px; }
+  .pc.on i { color: var(--blood); }
+  .pc h4 { font-size: 13px; font-weight: 400; color: var(--text-primary); }
+  .pc p { font-size: 10px; color: var(--text-tertiary); margin-top: 2px; font-weight: 300; }
+
+  /* PAYMENT INFO */
+  .pinfo {
+    border-radius: var(--radius-lg);
+    padding: 1.1rem;
+    background: rgba(0,0,0,0.03);
+    border: 0.5px solid var(--border);
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.9;
+    display: none;
+    font-weight: 300;
+  }
+  @media (prefers-color-scheme: dark) { .pinfo { background: rgba(255,255,255,0.04); } }
+  .pinfo.on { display: block; }
+  .pinfo strong { color: var(--text-primary); font-weight: 400; display: block; margin-bottom: 5px; }
+  .mono { font-family: 'Courier New', monospace; letter-spacing: .5px; }
+  .pref {
+    margin-top: 9px;
+    padding: 7px 11px;
+    background: var(--al);
+    border-radius: var(--radius-md);
+    color: var(--ad);
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  /* UPLOAD */
+  .upload-zone {
+    border: 1.5px dashed var(--border-hover);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    background: var(--surface);
+    display: none;
+    position: relative;
+    transition: border-color .12s;
+  }
+  .upload-zone.on { display: block; }
+  .upload-zone:hover { border-color: var(--blood); }
+  .upload-zone.has-file { border-color: var(--g2); background: var(--gl); }
+  .upload-zone .ti { font-size: 28px; color: var(--text-tertiary); display: block; margin-bottom: 8px; }
+  .upload-zone.has-file .ti { color: var(--g2); }
+  .upload-zone p { font-size: 13px; color: var(--text-secondary); font-weight: 300; }
+  .upload-zone .fname { font-size: 12px; color: var(--g2); font-weight: 400; margin-top: 4px; }
+  .upload-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .prev-img { width: 100%; max-height: 160px; object-fit: cover; border-radius: var(--radius-md); margin-top: 10px; display: none; }
+  .prev-img.on { display: block; }
+
+  /* BUTTONS */
+  .sbtn {
+    width: 100%;
+    padding: 13px;
+    background: #635BFF;
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    letter-spacing: .5px;
+    transition: background .12s;
+  }
+  .sbtn:hover { background: #4B44CC; }
+  .tbtn {
+    width: 100%;
+    padding: 13px;
+    background: var(--blood);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    letter-spacing: .5px;
+    transition: background .12s;
+  }
+  .tbtn:hover { background: var(--blood2); }
+  .tbtn:disabled { opacity: .4; cursor: not-allowed; }
+  .upload-hint { font-size: 11px; color: var(--text-tertiary); text-align: center; margin-top: 6px; font-weight: 300; }
+
+  /* SPINNER */
+  .spin { display: none; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: sp .7s linear infinite; }
+  @keyframes sp { to { transform: rotate(360deg); } }
+  .spin.on { display: inline-block; }
+
+  /* FOOTER NOTE */
+  .sheet-note { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-tertiary); margin-top: 10px; justify-content: center; font-weight: 300; }
+  .sdot { width: 6px; height: 6px; border-radius: 50%; background: #63c05b; flex-shrink: 0; }
+
+  /* ERROR */
+  .err { font-size: 12px; color: var(--blood); margin-top: 8px; display: none; text-align: center; }
+  .err.on { display: block; }
+
+  /* SUCCESS */
+  .success { display: none; text-align: center; padding: 3rem 1.5rem; }
+  .success.on { display: block; }
+  .success h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; font-style: italic; color: var(--blood); margin-bottom: 10px; }
+  .success p { font-size: 13px; color: var(--text-secondary); max-width: 300px; margin: 0 auto; line-height: 1.8; font-weight: 300; }
+  .sdet { margin-top: 1.5rem; background: rgba(0,0,0,0.03); border-radius: var(--radius-lg); padding: 1.1rem; border: 0.5px solid var(--border); text-align: left; }
+  @media (prefers-color-scheme: dark) { .sdet { background: rgba(255,255,255,0.04); } }
+  .sdet .row { display: flex; justify-content: space-between; font-size: 12px; padding: 5px 0; border-bottom: 0.5px solid var(--border); font-weight: 300; }
+  .sdet .row:last-child { border-bottom: none; }
+  .sdet .row span:first-child { color: var(--text-secondary); }
+  .wa-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; margin-top: 1rem; padding: 13px;
+    background: #25D366; color: #fff;
+    border: none; border-radius: var(--radius-lg);
+    font-size: 14px; font-weight: 400; cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    transition: background .12s;
+  }
+  .wa-btn:hover { background: #1ebe5d; }
+  .success-footer { margin-top: 1.5rem; font-size: 11px; color: var(--text-tertiary); letter-spacing: 1px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div id="wrap">
+
+    <header class="hero">
+      <div class="egg-row">
+        <div class="egg-line"></div>
+        <div class="egg-icons">🥚 🥚 🥚</div>
+        <div class="egg-line"></div>
+      </div>
+      <h1><span>Un</span> Buen <span>Huevo</span></h1>
+      <div class="tagline">Huevos frescos de San José del Cabo</div>
+      <div class="domain">unbuenhuevo.org</div>
+    </header>
+
+    <!-- PLAN -->
+    <section class="section">
+      <div class="sec-label">¿Con qué frecuencia?</div>
+      <div class="plan-grid">
+        <div class="sc" id="pl-bi" onclick="setPlan('bi')" role="radio" aria-checked="false" tabindex="0">
+          <h3>Cada dos semanas</h3>
+          <div class="price">$100 <small>MXN / entrega</small></div>
+          <p>1 docena · huevos frescos de San José del Cabo</p>
+        </div>
+        <div class="sc on" id="pl-wk" onclick="setPlan('wk')" role="radio" aria-checked="true" tabindex="0">
+          <h3>Cada semana</h3>
+          <div class="price">$100 <small>MXN / semana</small></div>
+          <p>1 docena · huevos frescos de San José del Cabo</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERY -->
+    <section class="section">
+      <div class="sec-label">¿Cómo quieres recibirlos?</div>
+      <div class="del-grid">
+        <div class="dc" id="dl-pick" onclick="setDel('pick')" role="radio" aria-checked="false" tabindex="0">
+          <div class="diw"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+          <div>
+            <h3>Recoger en el centro</h3>
+            <p>Martes · Centro de San José del Cabo</p>
+            <span class="dtag tfree">Sin costo adicional</span>
+          </div>
+        </div>
+        <div class="dc" id="dl-palm" onclick="setDel('palm')" role="radio" aria-checked="false" tabindex="0">
+          <div class="diw"><i class="ti ti-truck-delivery" aria-hidden="true"></i></div>
+          <div>
+            <h3>Entrega en Palmilla</h3>
+            <p>Miércoles · Zona Palmilla</p>
+            <span class="dtag tfree">Sin costo adicional</span>
+          </div>
+        </div>
+        <div class="dc on" id="dl-home" onclick="setDel('home')" role="radio" aria-checked="true" tabindex="0">
+          <div class="diw"><i class="ti ti-home" aria-hidden="true"></i></div>
+          <div>
+            <h3>Entrega a domicilio</h3>
+            <p>San José del Cabo · A tu dirección</p>
+            <span class="dtag tfee">+$50 MXN envío</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="abox on" id="addrBox">
+        <div class="fg">
+          <label>Google Maps Pin (URL)</label>
+          <input type="url" id="mapPin" placeholder="https://maps.google.com/?q=…" autocomplete="off" />
+        </div>
+        <div class="fg">
+          <label>Descripción de tu casa</label>
+          <textarea id="homeDesc" placeholder="Ej. Casa blanca con portón negro, frente al parque…"></textarea>
+        </div>
+      </div>
+
+      <div style="margin-top:1.25rem">
+        <div class="fg">
+          <label>Notas adicionales para tu entrega</label>
+          <textarea id="notes" placeholder="Instrucciones especiales…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section">
+      <div class="sec-label">Tus datos de contacto</div>
+      <div class="fg">
+        <label>Nombre completo</label>
+        <input type="text" id="fullName" placeholder="María García" autocomplete="name" oninput="onNameInput()" />
+      </div>
+      <div class="fg-row">
+        <div class="fg">
+          <label>Teléfono (WhatsApp)</label>
+          <input type="tel" id="phone" placeholder="+52 624 000 0000" autocomplete="tel" />
+        </div>
+        <div class="fg">
+          <label>Correo electrónico</label>
+          <input type="email" id="email" placeholder="maria@correo.com" autocomplete="email" />
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENT -->
+    <section class="section">
+      <div class="sumcard">
+        <div class="sr"><span>Huevos frescos (1 docena)</span><span>$100 MXN</span></div>
+        <div class="sr" id="feeRow" style="display:none"><span>Envío a domicilio</span><span>+$50 MXN</span></div>
+        <div class="sr tot"><span id="totLbl">Total por semana</span><span id="totAmt">$100 MXN</span></div>
+      </div>
+
+      <div class="sec-label">Método de pago</div>
+      <div class="pay-grid">
+        <div class="pc on" id="py-stripe" onclick="setPay('stripe')" tabindex="0">
+          <i class="ti ti-credit-card" aria-hidden="true"></i>
+          <h4>Tarjeta</h4>
+          <p>Visa · Mastercard · Stripe</p>
+        </div>
+        <div class="pc" id="py-transfer" onclick="setPay('transfer')" tabindex="0">
+          <i class="ti ti-building-bank" aria-hidden="true"></i>
+          <h4>Transferencia</h4>
+          <p>SPEI · CLABE · Santander</p>
+        </div>
+      </div>
+
+      <div class="pinfo on" id="inf-stripe">
+        <strong><i class="ti ti-lock" style="vertical-align:-2px;margin-right:5px;font-size:12px;" aria-hidden="true"></i>Pago seguro con Stripe</strong>
+        Serás redirigido a Stripe para completar tu pago. Aceptamos Visa y Mastercard.<br>
+        <span style="font-size:10px;color:var(--text-tertiary)">🔒 Cifrado SSL · Protegido por Stripe</span>
+      </div>
+
+      <div class="pinfo" id="inf-transfer">
+        <strong><i class="ti ti-building-bank" style="vertical-align:-2px;margin-right:5px;font-size:12px;" aria-hidden="true"></i>Banco Santander</strong>
+        CLABE: <span class="mono">5579070147911070</span><br>
+        Cuenta: <span class="mono">60603100245</span><br>
+        Titular: Rebekah Aramburo Palacios
+        <div class="pref">
+          📝 Referencia: <strong id="refName">Tu nombre</strong> + "con huevos"<br>
+          <span style="font-size:10px">Ej. "María García con huevos"</span>
+        </div>
+      </div>
+
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="comprobanteFile" accept="image/*,application/pdf" onchange="onFileChange(event)" aria-label="Subir comprobante de transferencia" />
+        <i class="ti ti-cloud-upload" id="uploadIcon" aria-hidden="true"></i>
+        <p id="uploadText">Sube tu comprobante de transferencia</p>
+        <div class="fname" id="uploadFilename"></div>
+        <img class="prev-img" id="previewImg" alt="Vista previa del comprobante" />
+      </div>
+
+      <div id="stripeWrap">
+        <button class="sbtn" onclick="doSubmit('stripe')">
+          <span class="spin" id="spn1" aria-hidden="true"></span>
+          <i class="ti ti-lock" style="font-size:14px;" aria-hidden="true"></i>
+          Pagar con Stripe →
+        </button>
+      </div>
+
+      <div id="transferWrap" style="display:none">
+        <button class="tbtn" id="transferBtn" onclick="doSubmit('transfer')" disabled>
+          <span class="spin" id="spn2" aria-hidden="true"></span>
+          <i class="ti ti-check" style="font-size:14px;" aria-hidden="true"></i>
+          Confirmar pedido
+        </button>
+        <div class="upload-hint" id="uploadHint">Sube tu comprobante para continuar</div>
+      </div>
+
+      <div class="err" id="errMsg" role="alert">Por favor completa todos los campos requeridos.</div>
+      <div class="sheet-note"><div class="sdot"></div><span id="sheetTxt">Conectado a Google Forms</span></div>
+    </section>
+
+  </div><!-- end #wrap -->
+
+  <div class="success" id="successScreen" role="status">
+    <div style="font-size:54px;margin-bottom:1.25rem" aria-hidden="true">🐓</div>
+    <h2>¡Listo, gracias!</h2>
+    <p id="successMsg">Nos comunicaremos contigo por WhatsApp para confirmar tu primera entrega. Gracias por apoyar lo local.</p>
+    <div class="sdet" id="sdet"></div>
+    <button class="wa-btn" id="waBtn" onclick="openWA()" style="display:none">
+      <i class="ti ti-brand-whatsapp" style="font-size:18px" aria-hidden="true"></i>
+      Enviar comprobante por WhatsApp
+    </button>
+    <div class="success-footer">Un Buen Huevo · San José del Cabo</div>
+  </div>
+
+</div><!-- end .page-wrap -->
+
+<script>
+  const S = { plan: 'wk', del: 'home', pay: 'stripe' };
+  let comprobanteReady = false;
+  let lastPayload = null;
+
+  const STRIPE = {
+    wk_free: 'https://buy.stripe.com/14AaEX7DU8524tTesdd7q0c',
+    bi_free:  'https://buy.stripe.com/8x2eVde2i0CAf8x5VHd7q0d',
+    wk_home:  'https://buy.stripe.com/cNi7sL1fw1GE1hH4RDd7q0f',
+    bi_home:  'https://buy.stripe.com/4gMdR99M24SQ7G5gAld7q0e'
+  };
+
+  const FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSc7DyEjiUM6Z-L5V5Z_g6UO6XcT8UpnkPGkhfyExXa6PTZc7w/formResponse';
+  const FIELDS = {
+    nombre:      'entry.772719521',
+    telefono:    'entry.923068963',
+    correo:      'entry.878398721',
+    plan:        'entry.1470016908',
+    entrega:     'entry.630138080',
+    pin:         'entry.1939082634',
+    descripcion: 'entry.1333154703',
+    notas:       'entry.1845798757',
+    total:       'entry.1587359168',
+    pago:        'entry.100951580'
+  };
+
+  const WA = '526241555730';
+
+  function setPlan(p) {
+    S.plan = p;
+    document.querySelectorAll('[id^="pl-"]').forEach(c => { c.classList.remove('on'); c.setAttribute('aria-checked','false'); });
+    const el = document.getElementById('pl-' + p);
+    el.classList.add('on');
+    el.setAttribute('aria-checked','true');
+    updateTot();
+  }
+
+  function setDel(d) {
+    S.del = d;
+    document.querySelectorAll('[id^="dl-"]').forEach(c => { c.classList.remove('on'); c.setAttribute('aria-checked','false'); });
+    const el = document.getElementById('dl-' + d);
+    el.classList.add('on');
+    el.setAttribute('aria-checked','true');
+    document.getElementById('addrBox').classList.toggle('on', d === 'home');
+    updateTot();
+  }
+
+  function setPay(p) {
+    S.pay = p;
+    document.querySelectorAll('[id^="py-"]').forEach(c => c.classList.remove('on'));
+    document.getElementById('py-' + p).classList.add('on');
+    document.getElementById('inf-stripe').classList.toggle('on', p === 'stripe');
+    document.getElementById('inf-transfer').classList.toggle('on', p === 'transfer');
+    document.getElementById('stripeWrap').style.display = p === 'stripe' ? 'block' : 'none';
+    document.getElementById('transferWrap').style.display = p === 'transfer' ? 'block' : 'none';
+    document.getElementById('uploadZone').classList.toggle('on', p === 'transfer');
+  }
+
+  function updateTot() {
+    const fee = S.del === 'home' ? 50 : 0;
+    document.getElementById('feeRow').style.display = fee ? 'flex' : 'none';
+    document.getElementById('totAmt').textContent = '$' + (100 + fee) + ' MXN';
+    document.getElementById('totLbl').textContent = S.plan === 'wk' ? 'Total por semana' : 'Total por quincena';
+  }
+
+  function onNameInput() {
+    const n = document.getElementById('fullName').value.trim();
+    if (n) document.getElementById('refName').textContent = n;
+  }
+
+  function onFileChange(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    comprobanteReady = true;
+    const zone = document.getElementById('uploadZone');
+    zone.classList.add('has-file');
+    document.getElementById('uploadIcon').className = 'ti ti-circle-check';
+    document.getElementById('uploadText').textContent = 'Comprobante adjunto';
+    document.getElementById('uploadFilename').textContent = file.name;
+    if (file.type.startsWith('image/')) {
+      const r = new FileReader();
+      r.onload = ev => {
+        const img = document.getElementById('previewImg');
+        img.src = ev.target.result;
+        img.classList.add('on');
+      };
+      r.readAsDataURL(file);
+    }
+    document.getElementById('transferBtn').disabled = false;
+    const hint = document.getElementById('uploadHint');
+    hint.textContent = '✓ Listo para confirmar';
+    hint.style.color = '#3B6D11';
+  }
+
+  function validate() {
+    const nm = document.getElementById('fullName').value.trim();
+    const ph = document.getElementById('phone').value.trim();
+    const em = document.getElementById('email').value.trim();
+    if (!nm || !ph || !em) return false;
+    if (S.del === 'home') {
+      if (!document.getElementById('mapPin').value.trim()) return false;
+      if (!document.getElementById('homeDesc').value.trim()) return false;
+    }
+    return true;
+  }
+
+  function getPayload() {
+    const fee = S.del === 'home' ? 50 : 0;
+    const delLabels = { pick: 'Recoger en centro (Martes)', palm: 'Palmilla (Miércoles)', home: 'Entrega a domicilio' };
+    return {
+      nombre:      document.getElementById('fullName').value.trim(),
+      telefono:    document.getElementById('phone').value.trim(),
+      correo:      document.getElementById('email').value.trim(),
+      plan:        S.plan === 'wk' ? 'Semanal' : 'Quincenal',
+      entrega:     delLabels[S.del],
+      pin:         S.del === 'home' ? document.getElementById('mapPin').value.trim() : 'N/A',
+      descripcion: S.del === 'home' ? document.getElementById('homeDesc').value.trim() : 'N/A',
+      notas:       document.getElementById('notes').value.trim() || '—',
+      total:       '$' + (100 + fee) + ' MXN',
+      pago:        S.pay === 'stripe' ? 'Stripe' : 'Transferencia SPEI'
+    };
+  }
+
+  async function sendToForm(d) {
+    const params = new URLSearchParams();
+    for (const [k, fid] of Object.entries(FIELDS)) params.append(fid, d[k] || '');
+    try {
+      await fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params.toString() });
+      document.getElementById('sheetTxt').textContent = '✓ Pedido guardado en Google Sheets';
+    } catch (ex) {
+      document.getElementById('sheetTxt').textContent = 'Error al guardar — revisa tu conexión';
+    }
+  }
+
+  function buildWAMsg(d) {
+    return encodeURIComponent(
+      `*Nuevo pedido — Un Buen Huevo* 🥚\n\n` +
+      `👤 ${d.nombre}\n` +
+      `📱 ${d.telefono}\n` +
+      `📧 ${d.correo}\n` +
+      `📦 Plan: ${d.plan}\n` +
+      `🚚 Entrega: ${d.entrega}\n` +
+      `💰 Total: ${d.total}\n` +
+      `💳 Pago: ${d.pago}` +
+      (d.notas && d.notas !== '—' ? `\n📝 Notas: ${d.notas}` : '') +
+      `\n\n_Adjunto mi comprobante de transferencia._`
+    );
+  }
+
+  function openWA() {
+    if (!lastPayload) return;
+    window.open('https://wa.me/' + WA + '?text=' + buildWAMsg(lastPayload), '_blank');
+  }
+
+  function showSuccess(d, method) {
+    lastPayload = d;
+    document.getElementById('sdet').innerHTML = `
+      <div class="row"><span>Nombre</span><span>${d.nombre}</span></div>
+      <div class="row"><span>Plan</span><span>${d.plan}</span></div>
+      <div class="row"><span>Entrega</span><span>${d.entrega}</span></div>
+      <div class="row"><span>Total</span><span>${d.total} / entrega</span></div>
+      <div class="row"><span>Pago</span><span>${d.pago}</span></div>
+    `;
+    if (method === 'transfer') {
+      document.getElementById('successMsg').textContent = 'Tu pedido está registrado. Envíanos tu comprobante por WhatsApp para confirmar tu suscripción.';
+      document.getElementById('waBtn').style.display = 'flex';
+    }
+    document.getElementById('wrap').style.display = 'none';
+    document.getElementById('successScreen').classList.add('on');
+  }
+
+  async function doSubmit(method) {
+    if (!validate()) {
+      const e = document.getElementById('errMsg');
+      e.classList.add('on');
+      setTimeout(() => e.classList.remove('on'), 3500);
+      return;
+    }
+    const sid = method === 'stripe' ? 'spn1' : 'spn2';
+    document.getElementById(sid).classList.add('on');
+    const d = getPayload();
+    await sendToForm(d);
+    document.getElementById(sid).classList.remove('on');
+    if (method === 'stripe') {
+      const key = (S.plan === 'wk' ? 'wk' : 'bi') + '_' + (S.del === 'home' ? 'home' : 'free');
+      window.open(STRIPE[key], '_blank');
+    }
+    showSuccess(d, method);
+  }
+
+  // Keyboard support for cards
+  document.querySelectorAll('.sc, .dc, .pc').forEach(el => {
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });
+  });
+
+  updateTot();
+  setPay('stripe');
+</script>
+</body>
+</html>
